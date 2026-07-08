@@ -28,7 +28,7 @@ export async function searchCity(
   cityName: string,
   options: OpenMeteoOptions = {},
 ): Promise<GeoLocation | null> {
-  const normalizedCityName = cityName.trim()
+  const normalizedCityName = typeof cityName === 'string' ? cityName.trim() : ''
 
   if (normalizedCityName.length === 0) {
     return null
@@ -59,7 +59,7 @@ export async function fetchCurrentWeather(
   timezone: string,
   options: OpenMeteoOptions = {},
 ): Promise<OpenMeteoWeatherResponse | null> {
-  const normalizedTimezone = timezone.trim()
+  const normalizedTimezone = typeof timezone === 'string' ? timezone.trim() : ''
 
   if (!Number.isFinite(latitude) || !Number.isFinite(longitude) || normalizedTimezone.length === 0) {
     return null
